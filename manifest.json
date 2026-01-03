@@ -1,19 +1,13 @@
 {
-  "name": "Master Extension",
-  "description": "Base Level Extension",
-  "version": "1.0",
   "manifest_version": 3,
-  "action": {
-    "default_popup": "hello.html",
-    "default_icon": "Master-Extension-Image.png"
+  "name": "Cookie Tracker",
+  "version": "1.0",
+  "permissions": ["cookies", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "js": ["scripts/content.js"],
-      "matches": [
-        "https://developer.chrome.com/docs/extensions/*",
-        "https://developer.chrome.com/docs/webstore/*"
-      ]
-    }
-  ]
+  "action": {
+    "default_popup": "start.html"
+  }
 }
