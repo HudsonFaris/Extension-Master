@@ -19,14 +19,37 @@
       border-bottom: 1px solid #eee; 
       font-size: 12px; 
     }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; /* Keeps them vertically centered */
+      margin-bottom: 10px;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #f1f3f4;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 11px;
+    }
+    button:hover {
+      background-color: #e8eaed;
+    }
+
+    
   </style>
 </head>
 <body>
-  <h2>Cookie Tracker</h2>
+  <div class="header-container">
+    <h2>Cookie Tracker</h2>
+    <button id="clear-btn">Clear Data</button>
+  </div>
+
   <ul id="cookie-list">
     <li>Loading cookies...</li>
   </ul>
   
-  <script src="popup.js"></script>
+  <script src="Scripts/popup.js"></script>
 </body>
-</html>

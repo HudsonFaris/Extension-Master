@@ -32,3 +32,11 @@ async function displayStats() {
 
 
 displayStats();
+
+document.getElementById('clear-btn').addEventListener('click', async () => {
+  await chrome.storage.local.clear();
+  const list = document.getElementById("cookie-list");
+  list.innerHTML = "<li>No cookies tracked yet.</li>";
+  
+  console.log("Storage cleared!");
+});
