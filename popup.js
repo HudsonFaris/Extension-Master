@@ -1,15 +1,34 @@
 async function displayStats() {
-  const { stats } = await chrome.storage.local.get("stats");
-  const list = document.getElementById("cookie-list");
+  const result = await chrome.storage.local.get("stats");
+  const stats = result.stats;
   
-  if (!stats) {
+  const list = document.getElementById("cookie-list");
+
+  if (!stats || Object.keys(stats).length === 0) {
     list.innerHTML = "<li>No cookies tracked yet.</li>";
     return;
   }
 
-  list.innerHTML = Object.entries(stats)
-    .map(([domain, count]) => `<li><b>${domain}</b>: ${count} cookies</li>`)
-    .join("");
+  try {
+    list.innerHTML = Object.entries(stats)
+      .map(([domain, data]) => {
+        const count = data.count || 0;
+        const val = data.lastValue ? data.lastValue.substring(0, 15) : 'N/A';
+        const cause = data.lastCause || 'Unknown';
+
+        return `
+          <li>
+            <b>${domain}</b>: ${count} hits <br>
+            <small>Value: ${val}...</small><br>
+            <small>Cause: ${cause}</small>
+          </li>`;
+      })
+      .join("");
+  } catch (err) {
+    console.error("Rendering error:", err);
+    list.innerHTML = "<li>Error displaying data. Please reset storage.</li>";
+  }
 }
+
 
 displayStats();

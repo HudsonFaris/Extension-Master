@@ -1,15 +1,16 @@
-
 chrome.cookies.onChanged.addListener((changeInfo) => {
-  const { removed, cookie, cause } = changeInfo;
+  const { cookie, cause, removed } = changeInfo;
+  if (removed) return;
 
-  if (!removed) {
-    console.log(`New Cookie Detected!
-    Name: ${cookie.name}
-    Domain: ${cookie.domain}
-    Value: ${cookie.value}
-    Reason: ${cause}`);
-    updateCookieCount(cookie.domain);
-  }
+  chrome.storage.local.get({ stats: {} }, (data) => {
+    const stats = data.stats;
+    stats[cookie.domain] = {
+      count: (stats[cookie.domain]?.count || 0) + 1,
+      lastValue: cookie.value,
+      lastCause: cause
+    };
+    chrome.storage.local.set({ stats });
+  });
 });
 
 async function updateCookieCount(domain) {
