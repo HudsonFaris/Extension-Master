@@ -11,3 +11,16 @@
     "default_popup": "start.html"
   }
 }
+
+{
+  "manifest_version": 3,
+  "name": "Priority Email Tracker",
+  "permissions": ["identity", "storage"],
+  "oauth2": {
+    "client_id": "TEST.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/gmail.readonly"]
+  },
+  "background": {
+    "service_worker": "Scripts/background.js"
+  }
+}
