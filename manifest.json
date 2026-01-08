@@ -1,26 +1,25 @@
 {
   "manifest_version": 3,
-  "name": "Cookie Tracker",
+  "name": "Super Tracker",
   "version": "1.0",
-  "permissions": ["cookies", "storage"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": [
+    "cookies",
+    "storage",
+    "identity"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "oauth2": {
+    "client_id": "FILLER.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/gmail.readonly"
+    ]
+  },
   "background": {
     "service_worker": "Scripts/background.js"
   },
   "action": {
     "default_popup": "start.html"
-  }
-}
-
-{
-  "manifest_version": 3,
-  "name": "Priority Email Tracker",
-  "permissions": ["identity", "storage"],
-  "oauth2": {
-    "client_id": "TEST.apps.googleusercontent.com",
-    "scopes": ["https://www.googleapis.com/auth/gmail.readonly"]
-  },
-  "background": {
-    "service_worker": "Scripts/background.js"
   }
 }
