@@ -33,11 +33,13 @@ async function getAuthToken() { //auth token
   });
 }
 
+//api in .env
+
 
 async function fetchEmails() { //uses fetch api for token
   const token = await getAuthToken();
   const response = await fetch(
-    'https://www.googleapis.com/gmail/v1/users/me/messages?maxResults=5', //5 to reduce wait time for now
+    'https://www.googleapis.com/gmail/v1/users/me/messages?maxResults=5', //5 to reduce wait time for now (need messages as bearer token compared to cookie for security reasons)
     { headers: { Authorization: `Bearer ${token}` } }
   );
   const data = await response.json();
