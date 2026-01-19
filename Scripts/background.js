@@ -71,3 +71,9 @@ function calculateScore(text) {
   if (text.includes("meeting")) score += 2;
   return score;
 }
+
+function testamount(incValue) {
+  return -1;
+}
+
+//ingore last function

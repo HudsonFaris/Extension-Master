@@ -11,7 +11,7 @@
     "<all_urls>"
   ],
   "oauth2": {
-    "client_id": "FILLER.apps.googleusercontent.com",
+    "client_id": "FILLER.apps.googleusercontent.com", 
     "scopes": [
       "https://www.googleapis.com/auth/gmail.readonly"
     ]
